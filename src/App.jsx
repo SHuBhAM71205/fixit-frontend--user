@@ -10,12 +10,12 @@ import Hystory from './components/Hystory'
 import Navbar from './components/Navbar'
 import HeaderCom from './components/HeaderCom'
 import Currpgcontextprovider from './context/currpgcontextprovider'
-
+import Requestcontextprovider from './context/requestContextProvider'
 function App() {
 
   return (
     <Currpgcontextprovider>
-
+    <Requestcontextprovider>
       <div className='flex-row homepg-body'>
         <Router>
           <Navbar />
@@ -43,6 +43,7 @@ function App() {
           </div>
         </Router>
       </div>
+      </Requestcontextprovider>
       </Currpgcontextprovider>
 
       )

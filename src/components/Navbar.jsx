@@ -82,7 +82,7 @@ const Navbar = ({ userName }) => {
                         <Link
                             key={id}
                             to={path}
-                            className="button"
+                            className={location.pathname==path ? 'active button':'button'}
                             id={id}
                             onClick={() => setcurrpg(text)}
                         >
