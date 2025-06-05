@@ -1,13 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect ,useContext} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/navbar.css';
 import manIcon from '/man-icon-illustration-vector.jpg'; // Ensure this path is correct
+import Currpgcontext from '../context/currpgcontext';
 
 
 const Navbar = ({ userName }) => {
     const leftNavRef = useRef(null);
     const [isSmall, setIsSmall] = useState(false);
-
+    const context=useContext(Currpgcontext);
+    const{setcurrpg}=context;
     const buttonMappings = [
         { id: "b3", text: "Home", icon: <i className="fas fa-home" />, path: "/" },
         { id: "b1", text: "Request", icon: <i className="fas fa-file-alt" />, path: "/request" },
@@ -82,6 +84,7 @@ const Navbar = ({ userName }) => {
                             to={path}
                             className="button"
                             id={id}
+                            onClick={() => setcurrpg(text)}
                         >
                             <span className="icon" style={{ marginRight: !isSmall ? 0 : "10px" }}>
                                 {icon}
