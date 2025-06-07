@@ -54,7 +54,7 @@ export default function Feedback() {
           'Content-Type': 'application/json',
           'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjg0MDA1M2I4MDdiNTI1MWU1NTRmN2ViIn0sImlhdCI6MTc0OTA1MzQ2M30.1_GSrZDEN11n4DQaxAdFv7OkCjeRIdhojXCypyFBTiU',
         },
-        body: JSON.stringify({ "description":feedback, "star":rating }),
+        body: JSON.stringify({ "description": feedback, "star": rating }),
       });
 
       const data = await res.json();
@@ -73,31 +73,49 @@ export default function Feedback() {
     setRating(value);
   };
 
+  if(pendid.length===0){
+    return(
+    <div className="flex justify-center ml-auto mr-auto mt-4 p-20 bg-gray-300 w-3/4 h- rounded-xl">
+            There is no pending feedback
+          </div>)
+  }
+
   return (
     <>
-      <div className="history-track flex-col">
-        {pendid.length === 0 ? (
-          <div className="no-history">There is no pending feedback</div>
-        ) : (
-          pendid.map((req) => (
-            <div className="trackHistory flex-col" key={req._id}>
-              <div className="hd flex-row space-between">
-                <h6 className="request-title">{req.tag?.name || 'Request'}</h6>
-                <button className="feedback-btn" onClick={() => openFeedback(req._id)}>
+      <div className="flex flex-col gap-6 p-4">
+        
+          {pendid.map((req) => (
+            <div
+              className="flex flex-col gap-3 p-6 bg-white rounded-lg shadow-md border-l-4 border-yellow-400"
+              key={req._id}
+            >
+              <div className="flex justify-between items-center">
+                <h6 className="text-xl font-semibold text-gray-800">{req.tag?.name || 'Request'}</h6>
+                <button
+                  onClick={() => openFeedback(req._id)}
+                  className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 transition"
+                >
                   Give Feedback
                 </button>
               </div>
 
-              <div className="description"><strong>Description:</strong> {req.description}</div>
-              <div><strong>Area:</strong> {req.area?.name}</div>
-              <div><strong>Status:</strong> {req.status?.name}</div>
+              <div className="text-gray-700"><strong>Description:</strong> {req.description}</div>
+              <div className="text-gray-700"><strong>Area:</strong> {req.area?.name}</div>
+              <div className="text-gray-700"><strong>Status:</strong> {req.status?.name}</div>
 
-              {req.oth_tag && <div><strong>Other Tag:</strong> {req.oth_tag.name}</div>}
+              {req.oth_tag && (
+                <div className="text-gray-700"><strong>Other Tag:</strong> {req.oth_tag.name}</div>
+              )}
 
               {req.document && (
-                <div>
+                <div className="text-gray-700">
                   <strong>Document:</strong>{' '}
-                  <a href={req.document.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={req.document.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 underline"
+                  >
                     View Document
                   </a>
                 </div>
@@ -105,52 +123,21 @@ export default function Feedback() {
 
               {req.photo && (
                 <div>
-                  <strong>Photo:</strong><br />
+                  <strong className="text-gray-700">Photo:</strong><br />
                   <img
                     src={req.photo.url}
                     alt="Request photo"
-                    style={{ maxWidth: '200px', borderRadius: '8px', marginTop: '5px' }}
+                    className="max-w-xs mt-2 rounded"
                   />
                 </div>
               )}
 
-              <div><strong>Created:</strong> {new Date(req.createdAt).toLocaleString()}</div>
-            </div>
-          ))
-        )}
+              <div className="text-gray-600 text-sm">
+                <strong>Created:</strong> {new Date(req.createdAt).toLocaleString()}
+              </div>
+            </div>))}
+        
       </div>
-
-      {isOpen && (
-        <div className="feedback-modal" id="feedbackModal">
-          <div className="feedback-content">
-            <span className="close-btn" onClick={closeFeedbackForm}>
-              &times;
-            </span>
-            <h3>Submit Feedback</h3>
-
-            <div className="star-rating">
-              {[1, 2, 3, 4, 5].map((val) => (
-                <span
-                  key={val}
-                  className={`star ${val <= rating ? 'selected' : ''}`}
-                  onClick={() => handleStarClick(val)}
-                >
-                  &#9733;
-                </span>
-              ))}
-            </div>
-
-            <textarea
-              id="feedbackText"
-              placeholder="Write your feedback here..."
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-            />
-
-            <button onClick={submitFeedback}>Submit</button>
-          </div>
-        </div>
-      )}
     </>
-  );
+  )
 }

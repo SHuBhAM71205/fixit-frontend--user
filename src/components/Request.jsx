@@ -1,4 +1,3 @@
-import '../css/form-style.css';
 import React, { useEffect, useState } from 'react';
 
 const backend = import.meta.env.VITE_backend;
@@ -71,61 +70,83 @@ export default function Request() {
   };
 
   return (
-    <div className="request-form-container">
-      <h2>🛠️ Service Request Form</h2>
-      <form onSubmit={submitReq}>
-        <label htmlFor="area">Select Area:</label>
-        <select
-          id="area"
-          name="area"
-          value={formData.area}
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Area --</option>
-          {areas.map(area => (
-            <option key={area._id} value={area._id}>{area.name}</option>
-          ))}
-        </select>
+    <div className="w-full max-w-2xl mx-auto my-10 bg-indigo-100 p-6 rounded-lg shadow-2xl">
+  <h2 className="text-2xl font-bold text-center text-gray-800 pb-4">🛠️ Service Request Form</h2>
 
-        <label htmlFor="tag">Select Service Type:</label>
-        <select
-          id="tag"
-          name="tag"
-          value={formData.tag}
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Select Service Type --</option>
-          {tags.map(tag => (
-            <option key={tag._id} value={tag._id}>{tag.name}</option>
-          ))}
-        </select>
-
-        <label htmlFor="appliance_details">Appliance/Device Details:</label>
-        <input
-          type="text"
-          id="appliance_details"
-          name="appliance_details"
-          value={formData.appliance_details}
-          onChange={handleChange}
-          placeholder="e.g., LG AC Model X123"
-          required
-        />
-
-        <label htmlFor="description">Issue Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          rows="4"
-          placeholder="Briefly describe the problem"
-          required
-        ></textarea>
-
-        <button type="submit">📤 Submit Request</button>
-      </form>
+  <form onSubmit={submitReq} className="space-y-4">
+    
+    <div>
+      <label htmlFor="area" className="block text-sm font-medium text-gray-700">Select Area</label>
+      <select
+        id="area"
+        name="area"
+        value={formData.area}
+        onChange={handleChange}
+        required
+        className="mt-1 w-full p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">-- Select Area --</option>
+        {areas.map(area => (
+          <option key={area._id} value={area._id}>{area.name}</option>
+        ))}
+      </select>
     </div>
+
+    <div>
+      <label htmlFor="tag" className="block text-sm font-medium text-gray-700">Select Service Type</label>
+      <select
+        id="tag"
+        name="tag"
+        value={formData.tag}
+        onChange={handleChange}
+        required
+        className="mt-1 w-full p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-3 focus:ring-blue-500"
+      >
+        <option value="">-- Select Service Type --</option>
+        {tags.map(tag => (
+          <option key={tag._id} value={tag._id}>{tag.name}</option>
+        ))}
+      </select>
+    </div>
+
+    <div>
+      <label htmlFor="appliance_details" className="block text-sm font-medium text-gray-700">Appliance/Device Details</label>
+      <input
+        type="text"
+        id="appliance_details"
+        name="appliance_details"
+        value={formData.appliance_details}
+        onChange={handleChange}
+        placeholder="e.g., LG AC Model X123"
+        required
+        className="mt-1 w-full p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <div>
+      <label htmlFor="description" className="block text-sm font-medium text-gray-700">Issue Description</label>
+      <textarea
+        id="description"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        rows="4"
+        placeholder="Briefly describe the problem"
+        required
+        className="mt-1 w-full p-2 border border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      ></textarea>
+    </div>
+
+    <div className="text-center">
+      <button
+        type="submit"
+        className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition duration-300"
+      >
+        📤 Submit Request
+      </button>
+    </div>
+  </form>
+</div>
+
   );
 }

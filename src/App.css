@@ -1,13 +1,9 @@
-
+/* 
 .color-pallet{
     background-color : #eb5a3c;
     background-color : #0F1035;
     background-color : #DCF2F1;
 }
-
-
-
-/* ---------------------------general class---------------------------------------------------------- */
 
 *{
     margin: 0px;
@@ -19,7 +15,7 @@ body{
     align-items: center;
     justify-content: center;
     align-items: center;
-    background: url(bgTexture1.jpg) rgba(252, 206, 146, 0.425); 
+    background: url(../public/man-icon-illustration-vector.jpg) rgba(252, 206, 146, 0.425); 
     background-position: center;
     font-family: Arial, sans-serif;
 
@@ -32,9 +28,6 @@ body{
     display: flex;
     flex-direction: column;
 }
-
-/*--------------------------------------------------------component-----------------------------------------------*/
-
 .login-signup{
     background-color: antiquewhite;
     flex-direction: column;
@@ -103,9 +96,6 @@ input{
     padding-left: 10px;
 }
 
-
-/* --------------------------------------homepage--------------------------------------- */
-
 .homepg-body{
     margin: 0px 0px 0px 0px;
     width: 100vw;
@@ -132,12 +122,10 @@ input{
 } 
 
 
-/*  */
-
 .request-form{
   gap: 15px;
   align-items: center;
   justify-content: center;
   margin: 5vw;
 }
-
+ */

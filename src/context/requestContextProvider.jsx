@@ -1,7 +1,7 @@
 import RequestContext from './requestContext'
 import React ,{useState}from "react";
 
-const backend = import.meta.env.VITE_backend; // Make sure this is defined in .env
+const backend = import.meta.env.VITE_backend;
 
 const Requestcontextprovider = ({ children }) => {
     const [request,setrequest]=useState();
