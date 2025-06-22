@@ -94,7 +94,7 @@ export default function AuthForm({ onLoginSuccess }) {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 items-center justify-center">
+    <div className="flex min-h-screen min-width-screen bg-gradient-to-br from-indigo-500 to-purple-600 items-center justify-center">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           {isLogin ? 'Login' : 'Signup'}
